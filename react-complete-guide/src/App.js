@@ -1,39 +1,40 @@
-import logo from './logo.svg';
 import React, { Component } from 'react';
 import './App.css';
-import Person from './Person/Person';
+
+import UserInput from './UserInput/UserInput';
+import UserOutput from './UserOutput/UserOutput';
 class App extends Component{
-  state = {
-    persons: [
-      {name: 'max', age: 28},
-      {name: 'esraa', age: 27},
-      {name: 'toto', age: 30},
+  state={
+    username:'Esraa Salah Salem'
 
-    ],
-    otherState:'yyyy'
   }
-  switchNameHandler =()=>{
-    //console.log('was clicked');
-    //this.state.persons[0].name='yyyyyyyyyyy';
-    this.setState({persons:[
-      {name: 'maxxx', age: 28},
-      {name: 'esrxxaa', age: 27},
-      {name: 'totox', age: 30},
-
-    ]})
-  
+  usernameChangedHandler=(event)=>{
+   this.setState({username: event.target.value})
   }
-  render(){
-  return (
-    <div className="App">
-      <button onClick={this.switchNameHandler}> switch name </button>
-      <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click={this.switchNameHandler}> his hobbies:reading</Person>
-      <Person name={this.state.persons[1].name} age={this.state.persons[1].age}></Person>
-      <Person name={this.state.persons[2].name} age={this.state.persons[2].age}></Person>
 
-    </div>
-  );
-}
+  render() {
+    return (
+      <div className="App">
+        <ol>
+          <li>Create TWO new components: UserInput and UserOutput</li>
+          <li>UserInput should hold an input element, UserOutput two paragraphs</li>
+          <li>Output multiple UserOutput components in the App component (any paragraph texts of your choice)</li>
+          <li>Pass a username (of your choice) to UserOutput via props and display it there</li>
+          <li>Add state to the App component (=> the username) and pass the username to the UserOutput component</li>
+          <li>Add a method to manipulate the state (=> an event-handler method)</li>
+          <li>Pass the event-handler method reference to the UserInput component and bind it to the input-change event</li>
+          <li>Ensure that the new input entered by the user overwrites the old username passed to UserOutput</li>
+          <li>Add two-way-binding to your input (in UserInput) to also display the starting username</li>
+          <li>Add styling of your choice to your components/ elements in the components - both with inline styles and stylesheets</li>
+        </ol>
+        <UserInput changed={this.usernameChangedHandler}
+                    currentName={this.state.username}/>
+        <UserOutput userName={this.state.username}/>
+        <UserOutput userName={this.state.username} />
+        <UserOutput userName="Esraa" />
+      </div>
+    );
+  }
 }
 
 export default App;
